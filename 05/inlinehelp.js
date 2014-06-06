@@ -6,6 +6,11 @@ $(function(){
     displayHelpers(options);
 });
 
+$( "#dialog" ).dialog({ autoOpen: false });
+$( "#opener" ).click(function() {
+  $( "#dialog" ).dialog( "open" );
+});
+
 function displayHelpers(options){
     if (options != null) {
         setIconTo(options['icon']);
@@ -18,8 +23,8 @@ function displayHelpers(options){
     $('a.help_link').each(function(index, element){
         if ($(element).attr("id") == '') {
             $(element).attr("id", randomString());
-            appendHelpTo(element);
         }
+        appendHelpTo(element);
     });
     
     $('a.help_link').click(function() {
@@ -78,7 +83,6 @@ function randomString() {
 
 function displayHelperFor(element) {
     url = $(element).attr('href');
-    console.log(url);
     helpTextElement = "#" + $(element).attr("id") + "_" + $(element).attr("data-style");
     if ($(helpTextElement).html() == "") {
         $.get(url, {}, function(data) {
@@ -104,7 +108,7 @@ function activeDialogFor(element, modal) {
             autoOpen: false
         };
     }
-    $('#' + $(element).attr('id') + '_dialog').dialog(dialogOption);
+    $("#" + $(element).attr("id") + "_dialog").dialog(dialogOption);
 }
 
 function toggleDisplayOf(element) {
