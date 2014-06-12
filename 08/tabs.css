@@ -1,0 +1,54 @@
+body{
+    background-color: black;
+}
+
+.tabsDiv{
+    width: 500px;
+    height: 350px;
+    margin-top: 0px;
+    margin-left: 0px;
+} 
+
+.tabsDiv ul{
+    width: 500px;
+    height: 20px;
+    list-style: none;
+    background-color: black;
+    margin-bottom: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.tabsDiv div{
+    width: 500px;
+    height: 330px;
+    background-color: white;
+}
+
+.tabsSelectedLi{
+    width: 100px;
+    height: 20px;
+    background-color: white;
+    float: left;
+    text-align: center;
+}
+
+.tabsSelectedLi a {
+    width: 100px;
+    height: 20px;
+    color: black;
+}
+
+.tabsUnSelectedLi{
+    width: 100px;
+    height: 20px;
+    background-color: black;
+    float: left;
+    text-align: center;
+}
+
+.tabsUnSelectedLi a{
+    width: 100px;
+    height: 20px;
+    color: white;
+}
