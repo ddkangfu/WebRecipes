@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript">
+        $(function() {
+            $('#new-product-form').submit(function() {
+                var newProductForm = $(this);
+
+                $.ajax({
+                    method: "post",
+                    url: newProductForm.attr("action") + ".json",
+                    data: newProductForm.serialize(),
+                    success: renderNewProduct
+                });
+
+                return false;
+            });
+
+            function renderNewProduct() {
+                var productsList = $('#products-list');
+                var newProductForm = $('#new-product-form');
+
+                var product = {};
+                product.name = newProductForm.find('input[name*=name]').val();
+                product.price = newProductForm.find('input[name*=price]').val();
+                product.description = newProductForm.find('textarea[name*=description]').val();
+
+                var newProduct = $('<li></li>');
+                newProduct.append('<span class="product-name">' + product.name + '</span>');
+                newProduct.append('<em class="product-price">' + product.price + '</em>');
+                newProduct.append('<div class="product-description">' + product.description + '</div>');
+
+                productsList.append(newProduct);
+                productsList.find('input[type=text], textarea').each(function(input) {
+                    input.attr('value', '');
+                });
+            }
+        });
+        </script>
+    </head>
+    <body>
+        <form id="new_product_form" action="" method="post">
+            <label>First name</label>
+            <input type="text" name="fname" value="Mickey" />
+            <label>Last name</label>
+            <input type="text" name="lname" value="Mouse" />
+            <input type="submit" value="Submit" />
+        </form>
+    </body>
+<html>
