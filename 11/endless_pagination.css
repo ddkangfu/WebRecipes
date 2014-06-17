@@ -1,0 +1,11 @@
+.product {
+  margin: 40px auto;
+}
+
+.product a {
+  font-size: 300%;
+}
+
+#current_page {
+  display: none;
+}
