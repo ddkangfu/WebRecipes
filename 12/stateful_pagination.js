@@ -1,3 +1,31 @@
+function getParameterByName(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ''));
+}
+
+var currentPage = 0;
+var startPage = 0;
+
+$(function() {
+    startPage = parseInt(getParameterByName('start_page'));
+    if (isNaN(startPage)) {
+        startPage = parseInt(getParameterByName('page'));
+    }
+    if (isNaN(startPage)) {
+        startPage = 1;
+    }
+    currentPage = startPage - 1;
+
+    if (getParameterByName('page')) {
+        endPage = parseInt(getParameterByName('page'));
+        for (i = currentPage; i < endPage; i++) {
+            getNextPage(true);
+        }
+    }
+
+  observeScroll();
+});
+
 function loadData(data) {
     $('#content').append(Mustache.to_html("{{#products}} \
         <div class='product'>\
@@ -9,12 +37,6 @@ function loadData(data) {
     if (data.length == 0)
         $('#next_page_spinner').hide();
 }
-
-var currentPage = 0;
-
-$(function() {
-  observeScroll();
-});
 
 function nextPageWithJSON() {
     currentPage += 1;
@@ -29,10 +51,18 @@ function nextPageWithJSON() {
     return newURL;
 }
 
+function updateBrowserUrl() {
+  if (window.history.pushState == undefined)
+    return;
+
+  var newURL = '?start_page=' + startPage + '&page=' + currentPage;
+  window.history.pushState({}, '', newURL);
+}
+
 var loadingPage = 0;
 
-function getNextPage() {
-    if (loadingPage != 0) 
+function getNextPage(ignoreMutexBlocking) {
+    if (!ignoreMutexBlocking && loadingPage != 0) 
         return;
     loadingPage++;
     $.getJSON(nextPageWithJSON(), {}, updateContent).complete(function(){
@@ -41,7 +71,8 @@ function getNextPage() {
 }
 
 function updateContent(response){
-    loadData(response);
+    loadData(response)
+    updateBrowserUrl();
 }
 
 function readyForNextPage() {
