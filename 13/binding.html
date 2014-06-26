@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello</title>
+    </head>
+    <body>
+        <!--<p>First name: <input type="text" data-bind="value: firstname"></p>
+        <p>Last name: <input type="text" data-bind="value: lastname"></p>-->
+        <p>First name: <input type="text" data-bind='value: firstname, valueUpdate: "keyup"'></p>
+        <p>Last name: <input type="text" data-bind='value: lastname, valueUpdate: "keyup"'></p>
+        <p>Full name: <span aria-live="polite" data-bind="text: fullname"></span></p>
+        <script type="text/javascript" src="../js/knockout.js"></script>
+        <script type="text/javascript" src="binding.js"></script>
+    </body>
+</html>
