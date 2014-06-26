@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update Quantities</title>
+        <link rel="stylesheet" type="text/css" href="item.css">
+    </head>
+    <body>
+        <div role="application">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr aria-live="polite">
+                        <td data-bind="text: name"></td>
+                        <td data-bind="text: price"></td>
+                        <td><input type="text" name="quantity" data-bind='value: quantity, valueUpdate: "keyup"'></td>
+                        <td data-bind="text: subtotal "></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script type="text/javascript" src="../js/knockout.js"></script>
+        <script type="text/javascript" src="item.js"></script>
+    </body>
+</html>

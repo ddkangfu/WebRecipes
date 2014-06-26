@@ -1,0 +1,24 @@
+    table{
+        width: 600px;
+        border: none;
+    }
+
+    th.product{
+        width: 300px;
+    }
+
+    th.price{
+        width: 100px;
+    }
+
+    td.price{
+        text-align: right
+    }
+    
+    th.qty{
+        width:50px
+    }
+
+    input.qty{
+        width: 40px;
+    }
