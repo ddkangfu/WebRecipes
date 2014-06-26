@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update Quantities</title>
+        <link rel="stylesheet" type="text/css" href="item.css">
+    </head>
+    <body>
+        <div role="application">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">Total</td>
+                        <td aria-live="polite" data-bind="text: total()"></td>
+                    </tr>
+                </tfoot>
+                <tbody data-bind="foreach: items">
+                    <tr aria-live="polite">
+                        <td data-bind="text: name"></td>
+                        <td data-bind="text: price"></td>
+                        <td><input type="text" name="quantity" data-bind='value: quantity, valueUpdate: "keyup"'></td>
+                        <td data-bind="text: subtotal "></td>
+                        <td><button data-bind="click: function() { cartViewModel.remove(this); }">Remove</button></td>
+                        <!--<td><button data-bind="click: function() {remove(this);}">Remove</button></td>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script type="text/javascript" src="../js/knockout.js"></script>
+        <script type="text/javascript" src="update_cart.js"></script>
+    </body>
+</html>
