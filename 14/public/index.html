@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Product Management</title>
+    </head>
+    <body role="application">
+        <h1>Products</h1>
+        <div aria-live="polite" id="notice"></div>
+        <div aria-live="polite" id="form"></div>
+        <p><a href="#new">New Product</a></p>
+        <ul aria-live="polite" id="list"></ul>
+
+        <script type="text/html" id="product_template">
+            <li>
+                <h3>{{name}} - {{price}}
+                <button class="delete">Delete</button>
+                </h3>
+                <p>{{description}}</p>
+            </li>
+        </script>
+
+        <script type="text/html" id="product_form_template">
+            <form>
+                <div class="row">
+                    <label>Name<br><input id="product_name" type="text" name="name" value="{{name}}"></label>
+                </div>
+                <div class="row">
+                    <label>Description<br><input id="product_description" type="text" name="description" value="{{description}}"></label>
+                </div>
+                <div class="row">
+                    <label>Price<br><input id="product_price" type="text" name="price" value="{{price}}"></label>
+                </div>  
+                <button>Save</button>              
+            </form>
+            <p><a id="cancel" href="#">Cancel</a></p>
+        </script>
+
+        <script type="text/javascript" src="javascripts/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="javascripts/lib/json2.js"></script>
+        <script type="text/javascript" src="javascripts/lib/underscore.js"></script>
+        <script type="text/javascript" src="javascripts/lib/backbone.js"></script>
+        <script type="text/javascript" src="javascripts/lib/mustache.js"></script>
+        <script type="text/javascript" src="javascripts/app.js"></script>
+    </body>
+</html>
