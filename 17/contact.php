@@ -60,21 +60,38 @@ if (count($errors) == 0) {
 		#contact-form textarea {
 			height: 100%;
 		}
+
+		.errors h3, errors li {
+			color: #FF0000;
+		}
+
+		.errors li {
+			margin: 5px 0px;
+		}
 		</style>
 	</head>
 	<body>
+	<?php if (count($errors) > 0) : ?>
+		<h3>There were errors that prevented the email from sending</h3>
+		<ul>
+			<?php foreach($$errors as $error) : ?>
+			<li><?php echo $error; ?></li>
+		<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
+
 		<form id="contact-form" action="contact.php" method="POST">
 			<label for="name">Name</label>
-			<input class="full-width" type="text" name="name" />
+			<input class="full-width" type="text" name="name" value="<?php echo $name; ?>" />
 
 			<label for="email">Email</label>
-			<input class="full-width" type="text" name="email" />
+			<input class="full-width" type="text" name="email" value="<?php echo $email; ?>" />
 
 			<label for="subject">Subject</label>
-			<input class="full-width" type="text" name="subject" value="Web Consulting Inquiry" />
+			<input class="full-width" type="text" name="subject" value="<?php echo isset($subject) ? $subject : 'Web Consulting Inquiry' ?>" />
 
 			<label for="body">Body</label>
-			<textarea class="full-width" type="text" name="name"></textarea>
+			<textarea class="full-width" type="text" name="body" value="<?php echo $body; ?>"></textarea>
 
 			<input type="submit" name="send" value="Send" />						
 		</form>
