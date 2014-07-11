@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Swapping Examples</title>
+    </head>
+        <div id="customer-data"></div>
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript">
+        function loadPhotos() {
+            var apiKey = '98956b44cd9ee04132c7f3595b2fa59e';
+            var flickrMethod = 'flickr.interestingness.getList';
+            var photoCount = '12';
+            var extras = 'url_s';
+
+            $.ajax({
+                url: 'http://www.flickr.com/services/rest/?method='+flickrMethod+
+                     '&format=json&api_key='+apiKey+
+                     '&extras='+extras+
+                     '&per_page='+photoCount,
+                dataType: "jsonp"
+            });
+        }
+
+        function jsonFlickrApi(data) {
+            $.each(data.photos.photo, function(i, photo) {
+                var imageTag = $('<img');
+                imageTag.attr('src', photo.url_s);
+                $('body').append(imageTag);
+            });
+        }
+
+        $(function(){
+            loadPhotos();
+        });
+        </script>
+    </body>
+</html>
